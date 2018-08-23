@@ -49,4 +49,24 @@ class TimelineCircleView(ctx : Context) : View(ctx) {
         }
         return true
     }
+
+    data class State(var scale : Float = 0f, var prevScale : Float = 0f, var dir : Float = 0f) {
+
+        fun update(cb : (Float) -> Unit) {
+            this.scale += 0.05f * this.dir
+            if (Math.abs(this.scale - this.prevScale) > 1) {
+                this.scale = this.prevScale + this.dir
+                this.dir = 0f
+                this.prevScale = this.scale
+                cb(this.prevScale)
+            }
+        }
+
+        fun startUpdating(cb : () -> Unit) {
+            if (this.dir == 0f) {
+                this.dir = 1 - 2 * this.prevScale
+                cb()
+            }
+        }
+    }
 }
