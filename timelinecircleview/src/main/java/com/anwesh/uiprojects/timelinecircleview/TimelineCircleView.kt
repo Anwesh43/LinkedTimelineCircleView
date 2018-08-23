@@ -4,6 +4,7 @@ package com.anwesh.uiprojects.timelinecircleview
  * Created by anweshmishra on 24/08/18.
  */
 
+import android.app.Activity
 import android.view.View
 import android.view.MotionEvent
 import android.graphics.Canvas
@@ -186,6 +187,14 @@ class TimelineCircleView(ctx : Context) : View(ctx) {
             tc.startUpdating {
                 animator.start()
             }
+        }
+    }
+
+    companion object {
+        fun create(activity : Activity) : TimelineCircleView {
+            val view : TimelineCircleView = TimelineCircleView(activity)
+            activity.setContentView(view)
+            return view
         }
     }
 }
