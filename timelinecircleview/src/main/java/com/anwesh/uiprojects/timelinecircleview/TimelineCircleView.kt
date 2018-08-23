@@ -141,7 +141,7 @@ class TimelineCircleView(ctx : Context) : View(ctx) {
         }
     }
 
-    data class TimlelineCircle(var i : Int) {
+    data class TimelineCircle(var i : Int) {
 
         private var curr : TCNode = TCNode(0)
         private var dir : Int = 1
@@ -161,6 +161,27 @@ class TimelineCircleView(ctx : Context) : View(ctx) {
 
         fun startUpdating(cb : () -> Unit) {
             curr.startUpdating(cb)
+        }
+    }
+
+    data class Renderer(var view : TimelineCircleView) {
+        private val animator : Animator = Animator(view)
+        private val tc : TimelineCircle = TimelineCircle(0)
+
+        fun render(canvas : Canvas, paint : Paint) {
+            canvas.drawColor(Color.parseColor("#BDBDBD"))
+            tc.draw(canvas, paint)
+            animator.animate {
+                tc.update {i, scl ->
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            tc.startUpdating {
+                animator.start()
+            }
         }
     }
 }
