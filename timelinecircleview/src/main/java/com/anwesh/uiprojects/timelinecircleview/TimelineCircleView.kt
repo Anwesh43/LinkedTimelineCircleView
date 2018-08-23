@@ -29,10 +29,10 @@ fun Canvas.drawTCNode(i : Int, scale : Float, paint : Paint) {
     save()
     translate(w / 2, gap * i)
     save()
-    translate((w/2 + r) * index * (1 - sc1) , 0f)
+    translate((w/2 + r) * index * (1 - sc2) , gap / 2)
     drawCircle(0f, 0f, r, paint)
     restore()
-    drawLine(0f, 0f, 0f, gap * scale, paint)
+    drawLine(0f, 0f, 0f, gap * sc1, paint)
     restore()
 }
 
