@@ -10,7 +10,6 @@ import android.graphics.Canvas
 import android.graphics.Paint
 import android.content.Context
 import android.graphics.Color
-import android.graphics.RectF
 
 val nodes : Int = 5
 
@@ -34,4 +33,20 @@ fun Canvas.drawTCNode(i : Int, scale : Float, paint : Paint) {
     restore()
     drawLine(0f, 0f, 0f, gap * scale, paint)
     restore()
+}
+
+class TimelineCircleView(ctx : Context) : View(ctx) {
+
+    override fun onDraw(canvas : Canvas) {
+
+    }
+
+    override fun onTouchEvent(event : MotionEvent) : Boolean {
+        when (event.action) {
+            MotionEvent.ACTION_DOWN -> {
+
+            }
+        }
+        return true
+    }
 }
